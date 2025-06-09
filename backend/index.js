@@ -4,8 +4,9 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
+const cors = require("cors");
 const corsOptions = {
-  origin: "*",
+  origin: "https://paywallet.vercel.app",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -13,6 +14,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+t;
 
 app.use(express.json());
 const mainrouter = require("./routes/index");
