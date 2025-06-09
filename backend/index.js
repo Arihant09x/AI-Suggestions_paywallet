@@ -14,7 +14,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
-t;
 
 app.use(express.json());
 const mainrouter = require("./routes/index");
@@ -39,3 +38,4 @@ const connect = () => {
   }
 };
 connect();
+module.exports = app();
