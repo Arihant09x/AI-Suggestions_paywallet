@@ -11,6 +11,7 @@ app.use(
     credentials: true,
   })
 );
+app.options("*", cors());
 app.use(express.json());
 const mainrouter = require("./routes/index");
 app.use("/api/v1", mainrouter);
