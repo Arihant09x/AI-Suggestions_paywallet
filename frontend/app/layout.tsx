@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "PayWallet - Digital Wallet App",
   description: "Send, receive, and manage your money with ease",
   generator: "v0.dev",
-  icons: [{ rel: "icon", url: "/paywalletIcon2.png", sizes: "32x32" }],
+  icons: [{ rel: "icon", url: "/pay_wallet_3.svg", sizes: "32x32" }],
 };
 
 export default function RootLayout({

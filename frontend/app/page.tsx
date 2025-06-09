@@ -1,92 +1,116 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/contexts/AuthContext"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Wallet, Shield, Zap, Users, Star, ArrowRight, CheckCircle, Smartphone } from "lucide-react"
-import Link from "next/link"
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Wallet,
+  Shield,
+  Zap,
+  Users,
+  Star,
+  ArrowRight,
+  CheckCircle,
+  Smartphone,
+  Brain,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function HomePage() {
-  const { user, loading } = useAuth()
-  const router = useRouter()
-  const [currentFeature, setCurrentFeature] = useState(0)
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const [currentFeature, setCurrentFeature] = useState(0);
 
   const features = [
     {
       icon: Zap,
       title: "Instant Transfers",
-      description: "Send money instantly to anyone with just their phone number or username.",
+      description:
+        "Send money instantly to anyone with just their phone number or username.",
       color: "blue",
     },
     {
       icon: Shield,
       title: "Secure & Safe",
-      description: "Bank-level security with encrypted transactions and secure authentication.",
+      description:
+        "Bank-level security with encrypted transactions and secure authentication.",
       color: "green",
+    },
+    {
+      icon: Brain,
+      title: "AI Smart Suggestions",
+      description:
+        "Get personalized payment suggestions powered by AI, making your transfers faster and smarter.",
+      color: "pink",
     },
     {
       icon: Users,
       title: "QR Payments",
-      description: "Generate QR codes for easy payments or scan to pay instantly.",
+      description:
+        "Generate QR codes for easy payments or scan to pay instantly.",
       color: "purple",
     },
     {
       icon: Wallet,
       title: "Easy Management",
-      description: "Track all your transactions and manage your wallet balance effortlessly.",
+      description:
+        "Track all your transactions and manage your wallet balance effortlessly.",
       color: "orange",
     },
-  ]
+  ];
 
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "Small Business Owner",
-      content: "PayWallet has revolutionized how I handle payments. Quick, secure, and reliable!",
+      content:
+        "PayWallet has revolutionized how I handle payments. Quick, secure, and reliable!",
       rating: 5,
     },
     {
       name: "Mike Chen",
       role: "Freelancer",
-      content: "The QR code feature is amazing! I can receive payments from clients instantly.",
+      content:
+        "The QR code feature is amazing! I can receive payments from clients instantly.",
       rating: 5,
     },
     {
       name: "Priya Sharma",
       role: "Student",
-      content: "Perfect for splitting bills with friends. The interface is so intuitive and user-friendly.",
+      content:
+        "Perfect for splitting bills with friends. The interface is so intuitive and user-friendly.",
       rating: 5,
     },
-  ]
+  ];
 
   useEffect(() => {
     if (!loading && user) {
-      router.push("/dashboard")
+      router.push("/dashboard");
     }
-  }, [user, loading, router])
+  }, [user, loading, router]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFeature((prev) => (prev + 1) % features.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentFeature((prev) => (prev + 1) % features.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
-    )
+    );
   }
 
   if (user) {
-    return null
+    return null;
   }
 
-  const CurrentFeatureIcon = features[currentFeature].icon
+  const CurrentFeatureIcon = features[currentFeature].icon;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -129,14 +153,15 @@ export default function HomePage() {
 
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             Your Digital Wallet,
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block pb-2">
               Reimagined
             </span>
           </h1>
 
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Experience the future of digital payments. Send money instantly, manage your finances effortlessly, and
-            enjoy bank-level security with our cutting-edge wallet technology.
+            Experience the future of digital payments. Send money instantly,
+            manage your finances effortlessly, and enjoy bank-level security
+            with our cutting-edge wallet technology.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -150,7 +175,12 @@ export default function HomePage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-2 hover:bg-gray-50">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="text-lg px-8 py-4 border-2 hover:bg-gray-50"
+            >
               <Link href="/login">Sign In</Link>
             </Button>
           </div>
@@ -163,9 +193,13 @@ export default function HomePage() {
                   <div className="p-3 rounded-full bg-blue-100 mr-4">
                     <CurrentFeatureIcon className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">{features[currentFeature].title}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    {features[currentFeature].title}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-lg leading-relaxed">{features[currentFeature].description}</p>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  {features[currentFeature].description}
+                </p>
 
                 <div className="flex space-x-2 mt-6">
                   {features.map((_, index) => (
@@ -192,30 +226,59 @@ export default function HomePage() {
         {/* Features Grid */}
         <div className="py-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose PayWallet?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why Choose PayWallet?
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover the features that make PayWallet the preferred choice for digital payments
+              Discover the features that make PayWallet the preferred choice for
+              digital payments
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => {
-              const FeatureIcon = feature.icon
-              return (
-                <Card
-                  key={index}
-                  className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-2"
-                >
-                  <CardContent className="p-8 text-center">
-                    <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                      <FeatureIcon className="h-8 w-8 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              )
-            })}
+          <div className="relative w-full overflow-hidden py-4">
+            <div
+              className="flex gap-8 animate-marquee"
+              style={{
+                width: `calc(${features.length * 2} * 320px + ${
+                  features.length * 2 - 1
+                } * 32px)`, // 320px card + 32px gap, for double features
+                animationDuration: `${features.length * 6}s`, // Adjust speed as needed
+              }}
+            >
+              {features.concat(features).map((feature, index) => {
+                const FeatureIcon = feature.icon;
+                return (
+                  <Card
+                    key={index}
+                    className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-2 w-[320px] flex-shrink-0"
+                  >
+                    <CardContent className="p-8 text-center">
+                      <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <FeatureIcon className="h-8 w-8 text-blue-600" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+            <style jsx global>{`
+              @keyframes marquee {
+                0% {
+                  transform: translateX(0%);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              .animate-marquee {
+                animation: marquee linear infinite;
+              }
+            `}</style>
           </div>
         </div>
 
@@ -223,7 +286,9 @@ export default function HomePage() {
         <div className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl text-white my-20">
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">Trusted Globally</h2>
-            <p className="text-xl opacity-90 mb-12">Join thousands of satisfied users worldwide</p>
+            <p className="text-xl opacity-90 mb-12">
+              Join thousands of satisfied users worldwide
+            </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
@@ -249,23 +314,39 @@ export default function HomePage() {
         {/* Testimonials */}
         <div className="py-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
-            <p className="text-xl text-gray-600">Real feedback from real users</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What Our Users Say
+            </h2>
+            <p className="text-xl text-gray-600">
+              Real feedback from real users
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card
+                key={index}
+                className="border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardContent className="p-8">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="h-5 w-5 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
-                  <p className="text-gray-600 mb-6 italic">"{testimonial.content}"</p>
+                  <p className="text-gray-600 mb-6 italic">
+                    "{testimonial.content}"
+                  </p>
                   <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-500">{testimonial.role}</div>
+                    <div className="font-semibold text-gray-900">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -276,10 +357,13 @@ export default function HomePage() {
         {/* CTA Section */}
         <div className="py-20 text-center">
           <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Ready to Get Started?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Ready to Get Started?
+            </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Join thousands of users who trust PayWallet for their digital payment needs. Sign up today and experience
-              the future of digital wallets.
+              Join thousands of users who trust PayWallet for their digital
+              payment needs. Sign up today and experience the future of digital
+              wallets.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -290,7 +374,12 @@ export default function HomePage() {
               >
                 <Link href="/signup">Create Free Account</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="text-lg px-8 py-4"
+              >
                 <Link href="/login">Sign In</Link>
               </Button>
             </div>
@@ -324,7 +413,9 @@ export default function HomePage() {
                 </div>
                 <span className="text-xl font-bold">PayWallet</span>
               </div>
-              <p className="text-gray-400">The future of digital payments, designed for everyone.</p>
+              <p className="text-gray-400">
+                The future of digital payments, designed for everyone.
+              </p>
             </div>
 
             <div>
@@ -397,5 +488,5 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
