@@ -4,14 +4,16 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
-app.use(
-  cors({
-    origin: "https://paywallet.vercel.app",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
-app.options("*", cors());
+const corsOptions = {
+  origin: "https://paywallet.vercel.app",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 const mainrouter = require("./routes/index");
 app.use("/api/v1", mainrouter);
