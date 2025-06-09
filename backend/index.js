@@ -6,7 +6,7 @@ dotenv.config();
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://paywallet.vercel.app/",
+    origin: "https://paywallet.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
